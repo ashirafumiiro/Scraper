@@ -24,20 +24,18 @@ def extract_links(html):
     a_tags = soup.find_all('a')
     for a_tag in a_tags:
         k = a_tag.get('href')
-        try:
-            m = re.search("(?P<url>https?://[^\s]+)", k)
-            n = m.group(0)
-            rul = n.split('&')[0]
-            domain = urlparse(rul)
-            if(re.search('google.com', domain.netloc)):
-                continue
-            else:
-                result_links.append(rul)
-        except:
+        
+        m = re.search("(?P<url>https?://[^\s]+)", k)
+        n = m.group(0)
+        rul = n.split('&')[0]
+        domain = urlparse(rul)
+        if(re.search('google.com', domain.netloc)):
             continue
+        else:
+            result_links.append(rul)
     return result_links
 
 
-if __name__ == '__main__':
-    print(fetch_result("http://google.com"))
+# if __name__ == '__main__':
+#     print(fetch_result("http://google.com"))
 
