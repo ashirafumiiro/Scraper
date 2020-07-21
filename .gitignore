@@ -1,2 +1,6 @@
 __pycache/
 *.pyc
+*.xml
+.coverage*
+output.txt
+.travis.yml

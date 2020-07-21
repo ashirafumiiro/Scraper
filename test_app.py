@@ -1,7 +1,24 @@
 import unittest
 import re
 import os
-from app import file_load, fetch_result, extract_links
+from app import file_load, fetch_result, extract_links, is_valid_file
+
+
+class TestIsValidFile(unittest.TestCase):
+    def test_is_valid_file(self):
+        valid_file = 'test.txt'
+        invalid_file = 'test.sh'
+        f = open(valid_file, 'w')
+        f.write('test')
+        f.close()
+        self.assertTrue(is_valid_file(valid_file))
+        with self.assertRaises(TypeError):
+            is_valid_file(invalid_file)
+        os.remove(valid_file)
+        with self.assertRaises(FileNotFoundError):
+            is_valid_file(valid_file)
+
+
 
 
 class TestFileLoad(unittest.TestCase):
@@ -42,3 +59,5 @@ class TestExtractLinks(unittest.TestCase):
         self.assertEqual(links[0], 'http://example.com/elsie')
         self.assertEqual(links[2], 'http://example.com/tillie')
         self.assertEqual(len(links), 3)  # must ignore links from google resources
+
+    
