@@ -27,13 +27,13 @@ if __name__ == "__main__":
                             about_url = fb_links[0]+'about'
                             print(about_url)
                             get_about_page = requests.get(about_url)
+
                             soup = BeautifulSoup(get_about_page.text, 'html.parser')
                             links = soup.find_all('a')
                             email_a_tag = list(filter(lambda a: 'mailto' in a.get('href'), links))
                             if len(email_a_tag)>0:
                                 href_string = str(email_a_tag[0].get('href'))
-                                print("type:", str(type(href_string)),
-                                      ",Value:", href_string)
+                                print("Value:", href_string)
                                 m = re.search('mailto:(?P<email>.*)', href_string)
                                 if m:
                                     mail = m.group('email')

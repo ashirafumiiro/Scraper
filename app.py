@@ -13,6 +13,13 @@ def is_valid_file(file_path):
     else:
         return True
 
+
+def get_url(company_name):
+    url = 'https://www.google.com/search?client=ubuntu&channel=fs&q={}&ie=utf-8&oe=utf-8'.\
+        format(company_name)
+    return url
+
+
 def file_load(file):
     f = open(file, 'r')
     lines = f.read().splitlines()  # Company names are listed using newlines
@@ -20,9 +27,7 @@ def file_load(file):
     return lines
 
 def fetch_result(company_name):
-    url = 'https://www.google.com/search?client=ubuntu&channel=fs&q={}&ie=utf-8&oe=utf-8'.\
-        format(company_name)
-    result = requests.get(url)
+    result = requests.get(get_url(company_name))
     return result
 
 
@@ -44,3 +49,7 @@ def extract_links(html):
         except:
             continue   
     return result_links
+
+
+# if __name__ == '__main__':
+    
