@@ -4,3 +4,5 @@ __pycache/
 .coverage*
 output.txt
 .travis.yml
+.vscode/
+scraper-env/
