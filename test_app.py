@@ -1,7 +1,8 @@
 import unittest
 import re
 import os
-from app import file_load, fetch_result, extract_links, is_valid_file, get_url
+from app import (file_load, fetch_result, extract_links, is_valid_file, get_url,
+    get_facebook_about_link, get_facebook_link)
 
 
 class TestBuildURL(unittest.TestCase):
@@ -75,4 +76,14 @@ class TestExtractLinks(unittest.TestCase):
         self.assertEqual(links[2], 'http://example.com/tillie')
         self.assertEqual(len(links), 3)  # must ignore links from google resources
 
+
+class TestFacebookLinks(unittest.TestCase):
+    def test_fb_link(self):
+        self.assertGreater(len(get_facebook_link(['http://facebook.com/mycompany/'])),0)
+        self.assertEqual(len(get_facebook_link(['http://no.com/valid/link'])), 0)
     
+    def test_fb_about(self):
+        fb_link = 'http://facebook.com/mycompany'
+        about_link = get_facebook_about_link(fb_link)
+        self.assertTrue('about' in about_link)
+

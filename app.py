@@ -51,5 +51,14 @@ def extract_links(html):
     return result_links
 
 
-# if __name__ == '__main__':
+def get_facebook_link(links):
+    fb_links = list(filter(lambda a: "facebook.com" in a, links))
+    if len(fb_links) > 0:
+        return fb_links[0]
+    return ''
+
+
+def get_facebook_about_link(link):
+    about_url = link+'about'
+    return about_url
     

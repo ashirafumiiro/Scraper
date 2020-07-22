@@ -1,4 +1,5 @@
 __pycache/
+__pycache__/
 *.pyc
 *.xml
 .coverage*
@@ -6,3 +7,4 @@ output.txt
 .travis.yml
 .vscode/
 scraper-env/
+.pytest_cache/
