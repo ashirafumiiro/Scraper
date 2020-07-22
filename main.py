@@ -54,9 +54,9 @@ def main():
         print("---------{}--------".format(company))
         response  = app.fetch_result(company)
         result_links = app.extract_links(response.text)
-        fb_link = get_facebook_link(result_links)
+        fb_link = app.get_facebook_link(result_links)
         if fb_link:
-            about_link = get_facebook_about_link(fb_link)
+            about_link = app.get_facebook_about_link(fb_link)
             email = get_email(about_link)
             print_to_file(company, email)
         print("\n\n")
